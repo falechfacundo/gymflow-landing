@@ -4,23 +4,23 @@ import InnerHero from '../components/InnerHero.astro';
 import Icon from '../components/Icon.astro';
 import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { compare } from '../i18n/pages';
+import { resources } from '../i18n/resources';
 import { ui } from '../i18n/ui';
 import { url, compareKeys, type CompareKey, type Lang } from '../i18n/routes';
-import { REGISTER_URL } from '../config';
+import { LOGIN_URL } from '../config';
 
 interface Props { lang: Lang; ckey: CompareKey }
 const { lang, ckey } = Astro.props;
-const C = compare[lang];
+const C = resources[lang];
 const c = C.data[ckey];
 const name = C.names[ckey];
 const t = ui[lang].common;
-const crumbs = [{ name: t.breadcrumbHome, href: url('home', lang) }, { name: ui[lang].nav.compare, href: url(ckey, lang) }, { name: `GymFlow vs ${name}`, href: url(ckey, lang) }];
+const crumbs = [{ name: t.breadcrumbHome, href: url('home', lang) }, { name: ui[lang].nav.compare, href: url(ckey, lang) }, { name, href: url(ckey, lang) }];
 const others = compareKeys.filter((k) => k !== ckey);
 ---
 <Layout title={c.metaTitle} description={c.metaDesc} lang={lang} routeKey={ckey} breadcrumbs={crumbs}>
   <InnerHero eyebrow={ui[lang].nav.compare} title={c.h1} lead={c.lead} crumbs={crumbs}>
-    <a href={REGISTER_URL} data-magnetic class="btn btn-primary btn-lg">{t.startFree} <Icon name="arrow-right" class="arrow" /></a>
+    <a href={LOGIN_URL} data-magnetic class="btn btn-primary btn-lg">{ui[lang].nav.login} <Icon name="arrow-right" class="arrow" /></a>
   </InnerHero>
 
   <section class="section !pt-4">
@@ -28,7 +28,7 @@ const others = compareKeys.filter((k) => k !== ckey);
       <h2 class="eyebrow mb-8" data-reveal>{C.h.quick}</h2>
       <div class="grid gap-5 md:grid-cols-2">
         <article class="cmp cmp-fb spot" data-reveal><h3>GymFlow</h3><p>{c.quick.fb}</p></article>
-        <article class="cmp spot" data-reveal><h3>{name}</h3><p>{c.quick.other}</p></article>
+        <article class="cmp spot" data-reveal><h3>{C.h.other('un proceso manual')}</h3><p>{c.quick.other}</p></article>
       </div>
     </div>
   </section>
@@ -41,7 +41,7 @@ const others = compareKeys.filter((k) => k !== ckey);
           <ul>{c.chooseFb.map((i) => <li><Icon name="check" size={16} stroke={2.5} class="text-ok" />{i}</li>)}</ul>
         </div>
         <div class="cmp-list" data-reveal>
-          <h2>{C.h.other(name)}</h2>
+          <h2>{C.h.other('un proceso manual')}</h2>
           <ul>{c.chooseOther.map((i) => <li><Icon name="arrow-right" size={16} class="text-fg-3" />{i}</li>)}</ul>
         </div>
       </div>
@@ -65,13 +65,13 @@ const others = compareKeys.filter((k) => k !== ckey);
       <h2 class="eyebrow mb-8" data-reveal>{t.related}</h2>
       <ul class="grid gap-4 md:grid-cols-3">
         {others.map((k) => (
-          <li data-reveal><a href={url(k, lang)} class="rel spot"><b>GymFlow vs {C.names[k]}</b><Icon name="arrow-right" size={18} class="rel-arrow" /></a></li>
+          <li data-reveal><a href={url(k, lang)} class="rel spot"><b>{C.names[k]}</b><Icon name="arrow-right" size={18} class="rel-arrow" /></a></li>
         ))}
       </ul>
     </div>
   </section>
 
-  <CtaBand title={C.h.ctaH} text={C.h.ctaP} primary={t.createAccount} />
+  <CtaBand title={C.h.ctaH} text={C.h.ctaP} primary={ui[lang].nav.login} />
 </Layout>
 <style is:global>
   .cmp { padding: 2rem; border-radius: 26px; background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.012)); box-shadow: inset 0 0 0 1px var(--color-line); }
