@@ -1,9 +1,9 @@
 ---
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
-import { REGISTER_URL, LOGIN_URL } from '../config';
+import { LOGIN_URL } from '../config';
 import { url, featureKeys, compareKeys, type Lang } from '../i18n/routes';
-import { ui, featureNav, competitors } from '../i18n/ui';
+import { ui, featureNav, resourceNav } from '../i18n/ui';
 
 interface Props { lang: Lang; switchHref: string }
 const { lang, switchHref } = Astro.props;
@@ -38,7 +38,7 @@ const homeHref = url('home', lang);
           <div class="dd-panel">
             <ul>
               {compareKeys.map((k) => (
-                <li><a href={url(k, lang)} class="dd-item dd-simple"><span><b>GymFlow vs {competitors[k.replace('cmp-', '') as keyof typeof competitors]}</b></span></a></li>
+                <li><a href={url(k, lang)} class="dd-item dd-simple"><span><b>{resourceNav[k][lang]}</b></span></a></li>
               ))}
             </ul>
           </div>
@@ -50,7 +50,7 @@ const homeHref = url('home', lang);
       <div class="flex shrink-0 items-center gap-1">
         <a href={switchHref} hreflang={lang === 'es' ? 'en' : 'es'} class="nl hidden sm:inline-flex !px-3 font-mono text-[0.72rem] uppercase tracking-wider" aria-label={ui[lang].footer.lang}>{lang === 'es' ? 'EN' : 'ES'}</a>
         <a href={LOGIN_URL} class="nl hidden sm:inline-flex">{t.login}</a>
-        <a href={REGISTER_URL} class="btn btn-primary btn-sm max-[359px]:!hidden max-sm:!px-3.5">{t.cta}</a>
+        <a href={LOGIN_URL} class="btn btn-primary btn-sm max-[359px]:!hidden max-sm:!px-3.5">{t.cta}</a>
         <button type="button" id="nav-toggle" class="grid h-11 w-11 place-items-center rounded-full text-white sm:ml-1 lg:hidden" aria-label={t.menu} aria-expanded="false" aria-controls="mobile-menu">
           <Icon name="menu" size={22} class="i-open" /><Icon name="x" size={22} class="i-close" />
         </button>
@@ -70,7 +70,7 @@ const homeHref = url('home', lang);
       <p class="mm-h">{t.compare}</p>
       <ul class="mm-list">
         {compareKeys.map((k) => (
-          <li><a href={url(k, lang)}><Icon name="arrow-right" size={16} />GymFlow vs {competitors[k.replace('cmp-', '') as keyof typeof competitors]}</a></li>
+          <li><a href={url(k, lang)}><Icon name="arrow-right" size={16} />{resourceNav[k][lang]}</a></li>
         ))}
       </ul>
       <ul class="mm-list mm-main">
@@ -80,7 +80,7 @@ const homeHref = url('home', lang);
         <li><a href={switchHref} hreflang={lang === 'es' ? 'en' : 'es'}>{ui[lang].footer.lang}</a></li>
         <li><a href={LOGIN_URL}>{t.login}</a></li>
       </ul>
-      <a href={REGISTER_URL} class="btn btn-primary btn-lg mt-8 w-full">{t.cta}</a>
+      <a href={LOGIN_URL} class="btn btn-primary btn-lg mt-8 w-full">{t.cta}</a>
     </div>
 </div>
 

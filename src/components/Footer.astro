@@ -1,8 +1,8 @@
 ---
 import Logo from './Logo.astro';
-import { REGISTER_URL, LOGIN_URL } from '../config';
+import { LOGIN_URL } from '../config';
 import { url, featureKeys, compareKeys, type Lang } from '../i18n/routes';
-import { ui, featureNav, competitors } from '../i18n/ui';
+import { ui, featureNav, resourceNav } from '../i18n/ui';
 
 interface Props { lang: Lang; switchHref: string }
 const { lang, switchHref } = Astro.props;
@@ -25,7 +25,7 @@ const n = ui[lang].nav;
     <nav aria-label={f.cols.compare}>
       <p class="fh">{f.cols.compare}</p>
       <ul class="fl">
-        {compareKeys.map((k) => <li><a href={url(k, lang)}>{f.vs(competitors[k.replace('cmp-', '') as keyof typeof competitors])}</a></li>)}
+        {compareKeys.map((k) => <li><a href={url(k, lang)}>{resourceNav[k][lang]}</a></li>)}
       </ul>
     </nav>
     <nav aria-label={f.cols.company}>
@@ -35,7 +35,7 @@ const n = ui[lang].nav;
         <li><a href={url('blog', lang)}>{n.blog}</a></li>
         <li><a href={url('changelog', lang)}>{n.changelog}</a></li>
         <li><a href={url('contact', lang)}>{f.contact}</a></li>
-        <li><a href={REGISTER_URL}>{f.signup}</a></li>
+        <li><a href={LOGIN_URL}>{f.signup}</a></li>
         <li><a href={LOGIN_URL}>{f.login}</a></li>
       </ul>
     </nav>

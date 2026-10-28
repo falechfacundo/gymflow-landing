@@ -79,7 +79,7 @@ const ld = [org, ...(crumbs ? [crumbs] : []), ...jsonLd];
     </script>
   </head>
   <body>
-    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-white">{lang === 'es' ? 'Saltar al contenido' : 'Skip to content'}</a>
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-[#11170a]">{lang === 'es' ? 'Saltar al contenido' : 'Skip to content'}</a>
     <Nav lang={lang} switchHref={switchHref} />
     <main id="main"><slot /></main>
     <Footer lang={lang} switchHref={switchHref} />

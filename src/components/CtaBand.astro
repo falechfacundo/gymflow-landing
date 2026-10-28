@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { REGISTER_URL } from '../config';
+import { LOGIN_URL } from '../config';
 interface Props { title: string; text?: string; primary: string; secondaryHref?: string; secondary?: string }
 const { title, text, primary, secondaryHref, secondary } = Astro.props;
 ---
@@ -13,7 +13,7 @@ const { title, text, primary, secondaryHref, secondary } = Astro.props;
       <h2 class="h-section relative mx-auto max-w-[20ch] grad-text" data-reveal>{title}</h2>
       {text && <p class="lead relative mx-auto mt-5 max-w-[32rem]" data-reveal>{text}</p>}
       <div class="relative mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row" data-reveal>
-        <a href={REGISTER_URL} data-magnetic class="btn btn-primary btn-lg">{primary} <Icon name="arrow-right" class="arrow" /></a>
+        <a href={LOGIN_URL} data-magnetic class="btn btn-primary btn-lg">{primary} <Icon name="arrow-right" class="arrow" /></a>
         {secondaryHref && secondary && <a href={secondaryHref} data-magnetic class="btn btn-ghost btn-lg">{secondary}</a>}
       </div>
     </div>
