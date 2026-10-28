@@ -103,8 +103,8 @@ const bars = c.bars;
                 <span class="sp-badge"><i></i>{c.sprint.badge}</span>
               </div>
               <div class="sp-stats">
-                <div><b>18<small>/27</small></b><span>{c.sprint.done}</span></div>
-                <div><b>67<small>%</small></b><span>{c.sprint.progress}</span></div>
+                <div><b>68<small>/100</small></b><span>{c.sprint.progress}</span></div>
+                <div><b>68<small>%</small></b><span>{c.sprint.done}</span></div>
                 <div><b>8</b><span>{c.sprint.days}</span></div>
               </div>
               <div class="sp-chart">
@@ -136,7 +136,7 @@ const bars = c.bars;
   @media (hover: hover) { .sc-step:hover { color: var(--color-fg-2); } }
   .sc-step[aria-current='true'] { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); box-shadow: inset 0 0 0 1px var(--color-line-strong); color: var(--color-fg); }
   .sc-ic { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--color-raise); box-shadow: inset 0 0 0 1px var(--color-line); transition: all .5s var(--ease-soft); }
-  .sc-step[aria-current='true'] .sc-ic { background: linear-gradient(135deg, #c5f551, #81b52b); color: #fff; box-shadow: 0 8px 24px -6px rgba(183,243,74,.8), inset 0 1px 0 rgba(255,255,255,.3); }
+  .sc-step[aria-current='true'] .sc-ic { background: linear-gradient(135deg, #c5f551, #81b52b); color: #11170a; box-shadow: 0 8px 24px -6px rgba(183,243,74,.8), inset 0 1px 0 rgba(255,255,255,.3); }
   .sc-body { display: block; min-width: 0; }
   .sc-title { display: block; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.025em; }
   .sc-text { display: block; overflow: hidden; max-height: 0; opacity: 0; font-size: .95rem; line-height: 1.6; color: var(--color-fg-2); transition: max-height .7s var(--ease-soft), opacity .5s, margin .5s; }
@@ -184,7 +184,7 @@ const bars = c.bars;
   .sp-top { display: flex; justify-content: space-between; align-items: flex-start; }
   .sp-name { font-size: 20px; font-weight: 600; letter-spacing: -.03em; } .sp-goal { margin-top: 3px; font-size: 12.5px; color: var(--color-fg-3); }
   .sp-badge { display: inline-flex; align-items: center; gap: 7px; padding: 4px 11px; border-radius: 99px; font-size: 11.5px; font-weight: 600; color: #34d399; background: rgba(52,211,153,.12); }
-  .sp-badge i { width: 6px; height: 6px; border-radius: 9px; background: #34d399; box-shadow: 0 0 10px #34d399; animation: blink 1.8s infinite; }
+  .sp-badge i { width: 6px; height: 6px; border-radius: 9px; background: #34d399; box-shadow: 0 0 10px #34d399; }
   .sp-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0; }
   .sp-stats div { padding: 14px 16px; border-radius: 12px; background: rgba(255,255,255,.03); box-shadow: inset 0 0 0 1px var(--color-line); }
   .sp-stats b { display: block; font-size: 26px; letter-spacing: -.04em; font-weight: 600; } .sp-stats small { font-size: 14px; color: var(--color-fg-3); font-weight: 500; letter-spacing: 0; }

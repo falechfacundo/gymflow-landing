@@ -1,14 +1,9 @@
 import type { Lang } from './routes';
 
-type Tag = 'plan' | 'design' | 'back' | 'front' | 'infra';
-
+type Tag = 'member' | 'billing' | 'access' | 'class' | 'cash';
 export interface HomeCopy {
   hero: { badge: string; badgeText: string; l1: string; l2: string; l3: string; lead: string; cta1: string; cta2: string; note: string; aria: string };
-  board: {
-    nav: string[]; ws: string; project: string; sprintSub: string; tabs: string[]; progress: string; url: string; preview: string; cursor1: string; cursor2: string;
-    cols: string[]; tags: Record<Tag, string>;
-    cards: Record<string, { key: string; title: string; tag: Tag; who: string; p: number; col: number }>;
-  };
+  board: { nav: string[]; ws: string; project: string; sprintSub: string; tabs: string[]; progress: string; url: string; preview: string; cursor1: string; cursor2: string; cols: string[]; tags: Record<Tag, string>; cards: Record<string, { key: string; title: string; tag: Tag; who: string; p: number; col: number }> };
   marquee: [string, string][];
   showcase: {
     eyebrow: string; h2a: string; h2b: string; label: string;
@@ -24,7 +19,7 @@ export interface HomeCopy {
     ai: { tag: string; h: string; p: string; prompt: string; n: number; tickets: [string, string, string][] };
     okr: { tag: string; h: string; p: string; krs: [string, number, string][] };
     git: { tag: string; h: string; p: string; commit: string; task: string };
-    time: { tag: string; h: string; p: string; days: string };
+    time: { tag: string; h: string; p: string; days: string; card: string; slot: string };
     pf: { tag: string; h: string; p: string; items: [string, number, string][] };
   };
   flow: { eyebrow: string; h2: string; steps: [string, string, string][] };
@@ -32,179 +27,175 @@ export interface HomeCopy {
   cta: { h2: string; lead: string; primary: string; secondary: string };
 }
 
-const tagColors: Record<Tag, string> = { plan: '#d2ff73', design: '#f472b6', back: '#38bdf8', front: '#34d399', infra: '#fbbf24' };
+const tagColors: Record<Tag, string> = { member: '#b7f34a', billing: '#38bdf8', access: '#d2ff73', class: '#fbbf24', cash: '#34d399' };
 export const tagColor = (t: Tag) => tagColors[t];
 
 const es: HomeCopy = {
   hero: {
-    badge: 'Nuevo', badgeText: 'Integración con Git y tickets generados con IA',
-    l1: 'Convertí trabajo', l2: 'complejo en un', l3: 'flujo claro.',
-    lead: 'GymFlow une proyectos, equipos y progreso en un solo lugar: tableros Kanban, sprints, timeline, OKRs y time tracking. Rápido, ordenado y hecho para que el trabajo avance.',
-    cta1: 'Empezar gratis', cta2: 'Ver cómo funciona', note: 'Plan gratuito · Registro en 1 minuto',
-    aria: 'Convertí trabajo complejo en un flujo claro.',
+    badge: 'GymFlow', badgeText: 'Gestión para gimnasios, desde recepción hasta administración',
+    l1: 'Sabé quién está', l2: 'al día y quién', l3: 'puede entrar.',
+    lead: 'Socios, membresías y control de acceso conectados para que tu equipo pueda operar con información clara, en cada turno.',
+    cta1: 'Ingresar al sistema', cta2: 'Conocer GymFlow', note: '¿Ya tenés acceso? Entrá al panel de gestión.',
+    aria: 'Sabé quién está al día y quién puede entrar.',
   },
   board: {
-    nav: ['Dashboard', 'Mis tareas', 'Proyectos', 'Objetivos', 'Reportes', 'Equipo'], ws: 'Workspace · Estudio Norte',
-    project: 'Lanzamiento v2', sprintSub: 'Sprint 12 · 8 días restantes', tabs: ['Tablero', 'Lista', 'Timeline', 'Sprints'], progress: 'Progreso',
-    url: 'flowboard.vercel.app/projects/lanzamiento-v2/board', preview: 'Vista previa animada del tablero de GymFlow', cursor1: 'Sofía', cursor2: 'Lucía',
-    cols: ['Por hacer', 'En progreso', 'En revisión', 'Hecho'],
-    tags: { plan: 'Planificación', design: 'Diseño', back: 'Backend', front: 'Frontend', infra: 'Infra' },
+    nav: ['Resumen', 'Socios', 'Accesos', 'Membresías', 'Clases', 'Caja'], ws: 'Gimnasio · Sede Centro',
+    project: 'Hoy en tu gimnasio', sprintSub: 'Ejemplo · Turno mañana', tabs: ['Resumen', 'Socios', 'Accesos', 'Caja'], progress: 'Membresías al día',
+    url: 'app.gymflow.app/admin', preview: 'Vista ilustrativa del panel de gestión de GymFlow', cursor1: 'Lucía', cursor2: 'Recepción',
+    cols: ['Vigentes', 'Por vencer', 'Revisar', 'Vencidas'],
+    tags: { member: 'Socio', billing: 'Membresía', access: 'Acceso', class: 'Clase', cash: 'Caja' },
     cards: {
-      scope: { key: 'FLW-142', title: 'Definir alcance del release', tag: 'plan', who: 'SM', p: 3, col: 0 },
-      onb: { key: 'FLW-139', title: 'Diseñar el onboarding de equipos', tag: 'design', who: 'LV', p: 2, col: 0 },
-      authz: { key: 'FLW-137', title: 'Auditar permisos de la API', tag: 'back', who: 'DP', p: 3, col: 0 },
-      gh: { key: 'FLW-131', title: 'Integración con GitHub por webhook', tag: 'back', who: 'MR', p: 3, col: 1 },
-      tl: { key: 'FLW-128', title: 'Timeline con dependencias', tag: 'front', who: 'SM', p: 2, col: 1 },
-      rep: { key: 'FLW-124', title: 'Reportes de tiempo por proyecto', tag: 'front', who: 'LV', p: 2, col: 2 },
-      auth: { key: 'FLW-118', title: 'Verificación de email al registrarse', tag: 'back', who: 'DP', p: 2, col: 3 },
-      dnd: { key: 'FLW-112', title: 'Tablero con drag & drop', tag: 'front', who: 'MR', p: 1, col: 3 },
+      ana: { key: 'SOC-041', title: 'Ana Martínez', tag: 'member', who: 'AM', p: 1, col: 0 },
+      tomas: { key: 'SOC-128', title: 'Tomás Ríos', tag: 'billing', who: 'TR', p: 2, col: 1 },
+      julia: { key: 'SOC-206', title: 'Julia López', tag: 'access', who: 'JL', p: 2, col: 2 },
+      marta: { key: 'SOC-087', title: 'Marta Gómez', tag: 'billing', who: 'MG', p: 3, col: 3 },
+      reserva: { key: 'CLS-022', title: 'Reserva · Funcional 18:00', tag: 'class', who: 'FR', p: 1, col: 0 },
+      venta: { key: 'CAJ-014', title: 'Venta · Proteína 1 kg', tag: 'cash', who: 'LP', p: 1, col: 0 },
     },
   },
   marquee: [
-    ['square-kanban', 'Tableros Kanban'], ['list-checks', 'Vistas de lista'], ['chart-gantt', 'Timeline'], ['rocket', 'Sprints'], ['layers', 'Epics'], ['target', 'OKRs'],
-    ['briefcase', 'Portfolios'], ['timer', 'Time tracking'], ['git-branch', 'Integración Git'], ['sparkles', 'Tickets con IA'], ['folder', 'Archivos'], ['chart-column', 'Reportes'],
+    ['users', 'Socios'], ['credit-card', 'Membresías y cobros'], ['qr-code', 'Control de acceso'], ['chart-column', 'Aforo'],
+    ['calendar-range', 'Clases y reservas'], ['dumbbell', 'Rutinas'], ['shopping-bag', 'Ventas'], ['chart-line', 'Retención'],
   ],
   showcase: {
-    eyebrow: 'Un producto, todas las vistas', h2a: 'Cada equipo trabaja distinto.', h2b: 'GymFlow se adapta a todos.', label: 'Lanzamiento v2',
+    eyebrow: 'Una operación conectada', h2a: 'Cada turno necesita información clara.', h2b: 'GymFlow la reúne en un mismo lugar.', label: 'Panel de gestión · vista ilustrativa',
     steps: [
-      { icon: 'square-kanban', title: 'Tablero', text: 'Kanban con drag & drop. Creá, renombrá y coloreá tus columnas, y filtrá por prioridad, asignado, tipo o epic: los filtros se quedan donde los dejaste.' },
-      { icon: 'list-checks', title: 'Lista', text: 'Todo el backlog en una tabla agrupada por sprint. Editá estado, prioridad y asignados por fila, o aplicá acciones en lote a decenas de tareas.' },
-      { icon: 'chart-gantt', title: 'Timeline', text: 'Mirá el trabajo en el tiempo. Cambiá la escala entre día, semana, mes y trimestre, con marcador de hoy y tareas ubicadas por sus fechas reales.' },
-      { icon: 'rocket', title: 'Sprints', text: 'Planificá el backlog, iniciá el sprint y cerralo con métricas de progreso reales. Sabés en todo momento si vas a llegar.' },
+      { icon: 'users', title: 'Socios', text: 'Consultá fichas, membresías y actividad desde recepción y administración.' },
+      { icon: 'qr-code', title: 'Accesos', text: 'Validá el estado del socio al ingresar y llevá el registro de asistencia.' },
+      { icon: 'credit-card', title: 'Membresías', text: 'Seguí planes, pagos y vencimientos vinculados con cada ficha.' },
+      { icon: 'calendar-range', title: 'Clases', text: 'Organizá horarios, cupos y reservas sin perder de vista la operación diaria.' },
     ],
     boardCols: [
-      ['Por hacer', '#6b6a7d', [['Definir alcance del release', 'plan'], ['Diseñar el onboarding', 'design'], ['Auditar permisos', 'back']]],
-      ['En progreso', '#38bdf8', [['Webhook de GitHub', 'back'], ['Timeline con dependencias', 'front']]],
-      ['Hecho', '#34d399', [['Verificación de email', 'back'], ['Drag & drop', 'front'], ['Vistas guardadas', 'front']]],
+      ['Vigentes', '#34d399', [['Ana Martínez · Plan mensual', 'member'], ['Funcional · 18:00', 'class'], ['Venta en recepción', 'cash']]],
+      ['Por revisar', '#fbbf24', [['Tomás Ríos · Vence mañana', 'billing'], ['Julia López · Consultar ficha', 'member']]],
+      ['Accesos de hoy', '#b7f34a', [['08:42 · Ana Martínez', 'access'], ['08:47 · Diego Pérez', 'access'], ['08:53 · Lucas Vega', 'access']]],
     ],
-    listHead: 'Sprint 12', listCount: '· 6 tareas',
+    listHead: 'Actividad de hoy', listCount: '· 6 registros',
     rows: [
-      ['Definir alcance del release', 'plan', 'SM', 'todo', '12 oct', ''], ['Integración con GitHub por webhook', 'back', 'MR', 'prog', '14 oct', ''],
-      ['Timeline con dependencias', 'front', 'SM', 'prog', '16 oct', ''], ['Reportes de tiempo por proyecto', 'front', 'LV', 'rev', '17 oct', ''],
-      ['Verificación de email', 'back', 'DP', 'done', '08 oct', ''], ['Tablero con drag & drop', 'front', 'MR', 'done', '05 oct', ''],
+      ['Ana Martínez', 'access', 'AM', 'done', '08:42', ''], ['Tomás Ríos · vence mañana', 'billing', 'TR', 'rev', '08:47', ''],
+      ['Clase funcional · 18:00', 'class', 'FR', 'prog', '09:00', ''], ['Venta · Proteína 1 kg', 'cash', 'LP', 'done', '09:16', ''],
+      ['Julia López', 'member', 'JL', 'todo', '09:22', ''], ['Diego Pérez', 'access', 'DP', 'done', '09:31', ''],
     ],
-    weeks: ['Sem 41', 'Sem 42', 'Sem 43', 'Sem 44'], today: 'Hoy',
-    bars: [['Definir alcance', 0, 22, '#d2ff73'], ['Diseño del onboarding', 12, 28, '#f472b6'], ['Webhook de GitHub', 20, 34, '#38bdf8'], ['Timeline', 30, 30, '#34d399'], ['Reportes de tiempo', 42, 26, '#fbbf24'], ['QA y release', 60, 30, '#b7f34a']],
-    sprint: { name: 'Sprint 12', goal: 'Objetivo: liberar integraciones y reportes', badge: 'Activo', done: 'Tareas completadas', progress: 'Progreso', days: 'Días restantes', real: 'Real', ideal: 'Ideal' },
-    status: { todo: 'Por hacer', prog: 'En progreso', rev: 'En revisión', done: 'Hecho' },
+    weeks: ['08:00', '10:00', '12:00', '14:00'], today: 'Ahora',
+    bars: [['Sala principal', 4, 22, '#b7f34a'], ['Musculación', 12, 32, '#34d399'], ['Sala funcional', 24, 29, '#38bdf8'], ['Clases', 38, 23, '#fbbf24'], ['Recepción', 47, 36, '#d2ff73'], ['Sala principal', 62, 25, '#34d399']],
+    sprint: { name: 'Aforo', goal: 'Ejemplo de ocupación del gimnasio', badge: 'Ejemplo', done: 'Ingresos registrados', progress: 'Ocupación', days: 'Personas adentro', real: 'Hoy', ideal: 'Promedio' },
+    status: { todo: 'Pendiente', prog: 'Programado', rev: 'Por revisar', done: 'Registrado' },
   },
   bento: {
-    eyebrow: 'Funciones', h2: 'Mucho más que un tablero de tareas.', lead: 'Objetivos, tiempo, código y portfolios conectados al trabajo diario, sin saltar entre cinco herramientas.',
-    ai: { tag: 'IA', h: 'Describí la idea. GymFlow arma los tickets.', p: 'Pasá de un párrafo a epics, historias y tareas listas para el board, en segundos.', prompt: 'Necesitamos un checkout con pagos y emails', n: 43,
-      tickets: [['Epic', '#d2ff73', 'Checkout con pagos y confirmación por email'], ['Historia', '#38bdf8', 'Como cliente, quiero pagar con tarjeta'], ['Tarea', '#34d399', 'Crear endpoint de creación de orden'], ['Tarea', '#34d399', 'Plantilla de email de confirmación']] },
-    okr: { tag: 'OKRs', h: 'Objetivos que se conectan con el trabajo real.', p: 'Vinculá objetivos a proyectos y seguí los resultados clave con progreso visible para todo el equipo.',
-      krs: [['Activar 500 equipos', 72, '#d2ff73'], ['Reducir tiempo de onboarding a 5 min', 48, '#38bdf8'], ['NPS mayor a 50', 91, '#34d399']] },
-    git: { tag: 'Git', h: 'Tus commits, en cada tarea.', p: 'Mencioná la clave de la tarea en el commit y queda vinculado solo.', commit: 'feat: exporta reportes', task: 'Reportes de tiempo por proyecto' },
-    time: { tag: 'Tiempo', h: 'Time tracking sin salir de la tarea.', p: 'Iniciá el timer, marcá horas facturables y mirá los reportes.', days: 'LMXJVSD' },
-    pf: { tag: 'Portfolios', h: 'Todos tus proyectos, de un vistazo.', p: 'Agrupá proyectos en portfolios y seguí el avance general.', items: [['Lanzamiento v2', 68, '#b7f34a'], ['App móvil', 34, '#38bdf8'], ['Rediseño de marca', 87, '#ec4899']] },
+    eyebrow: 'Herramientas para la operación', h2: 'Lo que pasa en tu gimnasio, a la vista.', lead: 'Socios, membresías, accesos y tareas del equipo conectados al trabajo diario.',
+    ai: { tag: 'Socios', h: 'Cada ficha, con el contexto a mano.', p: 'Encontrá los datos de contacto, la membresía y la actividad del socio en una misma vista.', prompt: 'Buscar socio: Ana Martínez', n: 25,
+      tickets: [['Socio', '#b7f34a', 'Ana Martínez · Plan mensual vigente'], ['Ingreso', '#d2ff73', 'Último acceso hoy · 08:42'], ['Membresía', '#38bdf8', 'Próximo vencimiento · 14 nov'], ['Clase', '#fbbf24', 'Reserva · Funcional 18:00']] },
+    okr: { tag: 'Actividad', h: 'Entendé el movimiento del gimnasio.', p: 'Revisá señales de asistencia, vigencia y ocupación para decidir dónde poner atención.',
+      krs: [['Membresías vigentes', 82, '#b7f34a'], ['Cuotas al día', 68, '#38bdf8'], ['Asistencia esta semana', 91, '#34d399']] },
+    git: { tag: 'Acceso', h: 'Una validación clara en recepción.', p: 'Consultá el estado del socio y registrá el resultado del ingreso.', commit: 'QR validado · socio activo', task: 'Acceso autorizado · 08:42' },
+    time: { tag: 'Clases', h: 'Horarios y cupos a la vista.', p: 'Revisá las reservas y planificá la capacidad de cada sesión.', days: 'LMXJVSD', card: 'Próxima clase · Funcional', slot: '18:00' },
+    pf: { tag: 'Retención', h: 'Detectá quién necesita seguimiento.', p: 'Usá la actividad reciente para priorizar el contacto con tus socios.', items: [['Sin asistencia · 7 días', 68, '#fbbf24'], ['Membresía por vencer', 82, '#38bdf8'], ['Seguimiento pendiente', 46, '#b7f34a']] },
   },
   flow: {
-    eyebrow: 'El flujo completo', h2: 'De la idea al release, sin perder el hilo.',
+    eyebrow: 'El día a día', h2: 'De la ficha del socio al cierre del turno.',
     steps: [
-      ['layers', 'Planificá', 'Organizá el trabajo en epics, sprints y backlog. Definí prioridades y objetivos antes de arrancar.'],
-      ['square-kanban', 'Ejecutá', 'Mové tareas por el tablero, asigná al equipo y medí el tiempo dedicado a cada una.'],
-      ['git-branch', 'Conectá', 'El código llega solo: los commits de GitHub se vinculan a cada tarea por su clave.'],
-      ['chart-column', 'Medí', 'Reportes de tiempo, progreso por proyecto y OKRs para saber qué se logró de verdad.'],
+      ['users', 'Registrá', 'Mantené las fichas de socios y sus membresías al día.'],
+      ['qr-code', 'Validá', 'Consultá el estado del socio y registrá su ingreso.'],
+      ['credit-card', 'Gestioná', 'Seguí pagos, clases, ventas y movimientos de caja.'],
+      ['chart-line', 'Acompañá', 'Revisá actividad y encontrá quién necesita atención.'],
     ],
   },
   details: {
-    eyebrow: 'Los detalles', h2: 'Pensado hasta el último píxel.', lead: 'Las pequeñas cosas que hacen que usar GymFlow todos los días se sienta liviano.',
+    eyebrow: 'Un sistema para el gimnasio', h2: 'Cada área, conectada con la operación.', lead: 'Un panel común ayuda a que recepción, administración y entrenadores consulten el mismo estado.',
     items: [
-      ['command', 'Paleta de comandos', 'Navegá y ejecutá acciones desde el teclado, sin despegar las manos.'],
-      ['bookmark', 'Vistas guardadas', 'Guardá tus combinaciones de filtros y volvé a ellas en un clic.'],
-      ['link', 'Dependencias', 'Marcá qué tarea bloquea a cuál y mirá el bloqueo directo en la tarjeta.'],
-      ['upload', 'Archivos', 'Subí archivos por drag & drop, de hasta 50 MB, directo al almacenamiento.'],
-      ['users', 'Equipos y roles', 'Invitá gente a tu workspace y controlá qué puede hacer cada rol.'],
-      ['import', 'Importá tu trabajo', 'Traé proyectos desde JSON con vista previa antes de confirmar.'],
+      ['users', 'Fichas de socios', 'Datos, membresías e historial desde un solo lugar.'],
+      ['credit-card', 'Planes y cobros', 'Vigencias, vencimientos y pagos asociados a cada socio.'],
+      ['qr-code', 'Control de acceso', 'Credenciales digitales, registro de ingresos y aforo.'],
+      ['calendar-range', 'Clases y rutinas', 'Horarios, reservas y planes de entrenamiento.'],
+      ['shopping-bag', 'Ventas y caja', 'Productos, movimientos de inventario y cierres de turno.'],
+      ['chart-column', 'Actividad y retención', 'Asistencia e indicadores para planificar seguimientos.'],
     ],
   },
-  cta: { h2: 'Poné a tu equipo en flujo.', lead: 'Creá tu workspace gratis y armá tu primer tablero en minutos.', primary: 'Crear cuenta gratis', secondary: 'Ya tengo cuenta' },
+  cta: { h2: 'Hacé que el gimnasio fluya.', lead: 'Entrá a GymFlow para gestionar la operación diaria de tu gimnasio.', primary: 'Ingresar al sistema', secondary: 'Consultar planes' },
 };
 
 const en: HomeCopy = {
   hero: {
-    badge: 'New', badgeText: 'Git integration and AI-generated tickets',
-    l1: 'Turn complex', l2: 'work into a', l3: 'clear flow.',
-    lead: 'GymFlow brings projects, teams and progress together: Kanban boards, sprints, timeline, OKRs and time tracking. Fast, organized and built to keep work moving.',
-    cta1: 'Get started free', cta2: 'See how it works', note: 'Free plan · Sign up in 1 minute',
-    aria: 'Turn complex work into a clear flow.',
+    badge: 'GymFlow', badgeText: 'Gym management, from reception to administration',
+    l1: 'Know who is', l2: 'up to date and', l3: 'who can enter.',
+    lead: 'Members, memberships and access control work together so your team can operate with clear information at every shift.',
+    cta1: 'Log in to GymFlow', cta2: 'Explore GymFlow', note: 'Already have access? Open your management panel.',
+    aria: 'Know who is up to date and who can enter.',
   },
   board: {
-    nav: ['Dashboard', 'My tasks', 'Projects', 'Goals', 'Reports', 'Team'], ws: 'Workspace · Northwind Studio',
-    project: 'Launch v2', sprintSub: 'Sprint 12 · 8 days left', tabs: ['Board', 'List', 'Timeline', 'Sprints'], progress: 'Progress',
-    url: 'flowboard.vercel.app/projects/launch-v2/board', preview: 'Animated preview of the GymFlow board', cursor1: 'Sofia', cursor2: 'Lucy',
-    cols: ['To do', 'In progress', 'In review', 'Done'],
-    tags: { plan: 'Planning', design: 'Design', back: 'Backend', front: 'Frontend', infra: 'Infra' },
+    nav: ['Overview', 'Members', 'Entries', 'Memberships', 'Classes', 'Cash'], ws: 'Gym · Downtown location',
+    project: 'Today at your gym', sprintSub: 'Example · Morning shift', tabs: ['Overview', 'Members', 'Entries', 'Cash'], progress: 'Memberships up to date',
+    url: 'app.gymflow.app/admin', preview: 'Illustrative preview of the GymFlow management panel', cursor1: 'Lucy', cursor2: 'Front desk',
+    cols: ['Active', 'Due soon', 'Review', 'Expired'],
+    tags: { member: 'Member', billing: 'Membership', access: 'Access', class: 'Class', cash: 'Cash' },
     cards: {
-      scope: { key: 'FLW-142', title: 'Define the release scope', tag: 'plan', who: 'SM', p: 3, col: 0 },
-      onb: { key: 'FLW-139', title: 'Design team onboarding', tag: 'design', who: 'LV', p: 2, col: 0 },
-      authz: { key: 'FLW-137', title: 'Audit API permissions', tag: 'back', who: 'DP', p: 3, col: 0 },
-      gh: { key: 'FLW-131', title: 'GitHub webhook integration', tag: 'back', who: 'MR', p: 3, col: 1 },
-      tl: { key: 'FLW-128', title: 'Timeline with dependencies', tag: 'front', who: 'SM', p: 2, col: 1 },
-      rep: { key: 'FLW-124', title: 'Time reports per project', tag: 'front', who: 'LV', p: 2, col: 2 },
-      auth: { key: 'FLW-118', title: 'Email verification on sign-up', tag: 'back', who: 'DP', p: 2, col: 3 },
-      dnd: { key: 'FLW-112', title: 'Drag & drop board', tag: 'front', who: 'MR', p: 1, col: 3 },
+      ana: { key: 'MEM-041', title: 'Ana Martinez', tag: 'member', who: 'AM', p: 1, col: 0 },
+      tomas: { key: 'MEM-128', title: 'Tomas Rios', tag: 'billing', who: 'TR', p: 2, col: 1 },
+      julia: { key: 'MEM-206', title: 'Julia Lopez', tag: 'access', who: 'JL', p: 2, col: 2 },
+      marta: { key: 'MEM-087', title: 'Marta Gomez', tag: 'billing', who: 'MG', p: 3, col: 3 },
+      reserva: { key: 'CLS-022', title: 'Booking · Functional 6 pm', tag: 'class', who: 'FR', p: 1, col: 0 },
+      venta: { key: 'POS-014', title: 'Sale · Protein 1 kg', tag: 'cash', who: 'LP', p: 1, col: 0 },
     },
   },
   marquee: [
-    ['square-kanban', 'Kanban boards'], ['list-checks', 'List views'], ['chart-gantt', 'Timeline'], ['rocket', 'Sprints'], ['layers', 'Epics'], ['target', 'OKRs'],
-    ['briefcase', 'Portfolios'], ['timer', 'Time tracking'], ['git-branch', 'Git integration'], ['sparkles', 'AI tickets'], ['folder', 'Files'], ['chart-column', 'Reports'],
+    ['users', 'Members'], ['credit-card', 'Memberships and billing'], ['qr-code', 'Access control'], ['chart-column', 'Occupancy'],
+    ['calendar-range', 'Classes and bookings'], ['dumbbell', 'Workout plans'], ['shopping-bag', 'Sales'], ['chart-line', 'Retention'],
   ],
   showcase: {
-    eyebrow: 'One product, every view', h2a: 'Every team works differently.', h2b: 'GymFlow adapts to all of them.', label: 'Launch v2',
+    eyebrow: 'Connected operations', h2a: 'Every shift needs clear information.', h2b: 'GymFlow brings it together.', label: 'Management panel · illustrative view',
     steps: [
-      { icon: 'square-kanban', title: 'Board', text: 'Kanban with drag & drop. Create, rename and color your columns, and filter by priority, assignee, type or epic: filters stay where you left them.' },
-      { icon: 'list-checks', title: 'List', text: 'The whole backlog in a table grouped by sprint. Edit status, priority and assignees per row, or run bulk actions on dozens of tasks.' },
-      { icon: 'chart-gantt', title: 'Timeline', text: 'See work across time. Switch the scale between day, week, month and quarter, with a today marker and tasks placed by their real dates.' },
-      { icon: 'rocket', title: 'Sprints', text: 'Plan the backlog, start the sprint and close it with real progress metrics. Know at every moment whether you will make it.' },
+      { icon: 'users', title: 'Members', text: 'Check profiles, memberships and activity from reception and administration.' },
+      { icon: 'qr-code', title: 'Access', text: 'Validate a member’s status at entry and keep an attendance record.' },
+      { icon: 'credit-card', title: 'Memberships', text: 'Follow plans, payments and due dates linked to each profile.' },
+      { icon: 'calendar-range', title: 'Classes', text: 'Organize schedules, capacity and bookings alongside daily operations.' },
     ],
     boardCols: [
-      ['To do', '#6b6a7d', [['Define the release scope', 'plan'], ['Design onboarding', 'design'], ['Audit permissions', 'back']]],
-      ['In progress', '#38bdf8', [['GitHub webhook', 'back'], ['Timeline with dependencies', 'front']]],
-      ['Done', '#34d399', [['Email verification', 'back'], ['Drag & drop', 'front'], ['Saved views', 'front']]],
+      ['Active', '#34d399', [['Ana Martinez · Monthly plan', 'member'], ['Functional · 6 pm', 'class'], ['Front desk sale', 'cash']]],
+      ['Needs review', '#fbbf24', [['Tomas Rios · Due tomorrow', 'billing'], ['Julia Lopez · Check profile', 'member']]],
+      ['Today’s entries', '#b7f34a', [['8:42 am · Ana Martinez', 'access'], ['8:47 am · Diego Perez', 'access'], ['8:53 am · Lucas Vega', 'access']]],
     ],
-    listHead: 'Sprint 12', listCount: '· 6 tasks',
+    listHead: 'Today’s activity', listCount: '· 6 records',
     rows: [
-      ['Define the release scope', 'plan', 'SM', 'todo', 'Oct 12', ''], ['GitHub webhook integration', 'back', 'MR', 'prog', 'Oct 14', ''],
-      ['Timeline with dependencies', 'front', 'SM', 'prog', 'Oct 16', ''], ['Time reports per project', 'front', 'LV', 'rev', 'Oct 17', ''],
-      ['Email verification', 'back', 'DP', 'done', 'Oct 8', ''], ['Drag & drop board', 'front', 'MR', 'done', 'Oct 5', ''],
+      ['Ana Martinez', 'access', 'AM', 'done', '8:42 am', ''], ['Tomas Rios · due tomorrow', 'billing', 'TR', 'rev', '8:47 am', ''],
+      ['Functional class · 6 pm', 'class', 'FR', 'prog', '9:00 am', ''], ['Sale · Protein 1 kg', 'cash', 'LP', 'done', '9:16 am', ''],
+      ['Julia Lopez', 'member', 'JL', 'todo', '9:22 am', ''], ['Diego Perez', 'access', 'DP', 'done', '9:31 am', ''],
     ],
-    weeks: ['Wk 41', 'Wk 42', 'Wk 43', 'Wk 44'], today: 'Today',
-    bars: [['Define scope', 0, 22, '#d2ff73'], ['Onboarding design', 12, 28, '#f472b6'], ['GitHub webhook', 20, 34, '#38bdf8'], ['Timeline', 30, 30, '#34d399'], ['Time reports', 42, 26, '#fbbf24'], ['QA and release', 60, 30, '#b7f34a']],
-    sprint: { name: 'Sprint 12', goal: 'Goal: ship integrations and reports', badge: 'Active', done: 'Tasks completed', progress: 'Progress', days: 'Days left', real: 'Actual', ideal: 'Ideal' },
-    status: { todo: 'To do', prog: 'In progress', rev: 'In review', done: 'Done' },
+    weeks: ['8 am', '10 am', '12 pm', '2 pm'], today: 'Now',
+    bars: [['Main floor', 4, 22, '#b7f34a'], ['Weights area', 12, 32, '#34d399'], ['Functional room', 24, 29, '#38bdf8'], ['Classes', 38, 23, '#fbbf24'], ['Front desk', 47, 36, '#d2ff73'], ['Main floor', 62, 25, '#34d399']],
+    sprint: { name: 'Occupancy', goal: 'Example of gym occupancy', badge: 'Example', done: 'Entries recorded', progress: 'Occupancy', days: 'People inside', real: 'Today', ideal: 'Average' },
+    status: { todo: 'Pending', prog: 'Scheduled', rev: 'Review', done: 'Recorded' },
   },
   bento: {
-    eyebrow: 'Features', h2: 'Much more than a task board.', lead: 'Goals, time, code and portfolios connected to daily work, without hopping between five tools.',
-    ai: { tag: 'AI', h: 'Describe the idea. GymFlow drafts the tickets.', p: 'Go from a paragraph to epics, stories and tasks ready for the board, in seconds.', prompt: 'We need a checkout with payments and emails', n: 42,
-      tickets: [['Epic', '#d2ff73', 'Checkout with payments and email confirmation'], ['Story', '#38bdf8', 'As a customer, I want to pay by card'], ['Task', '#34d399', 'Build the create-order endpoint'], ['Task', '#34d399', 'Confirmation email template']] },
-    okr: { tag: 'OKRs', h: 'Goals connected to the real work.', p: 'Link goals to projects and follow key results with progress visible to the whole team.',
-      krs: [['Activate 500 teams', 72, '#d2ff73'], ['Cut onboarding time to 5 min', 48, '#38bdf8'], ['NPS above 50', 91, '#34d399']] },
-    git: { tag: 'Git', h: 'Your commits, on every task.', p: 'Mention the task key in the commit and it links itself.', commit: 'feat: export reports', task: 'Time reports per project' },
-    time: { tag: 'Time', h: 'Time tracking without leaving the task.', p: 'Start the timer, mark billable hours and check the reports.', days: 'MTWTFSS' },
-    pf: { tag: 'Portfolios', h: 'All your projects, at a glance.', p: 'Group projects into portfolios and follow overall progress.', items: [['Launch v2', 68, '#b7f34a'], ['Mobile app', 34, '#38bdf8'], ['Brand redesign', 87, '#ec4899']] },
+    eyebrow: 'Tools for daily operations', h2: 'See what is happening at your gym.', lead: 'Member profiles, memberships, entries and team tasks connected to daily work.',
+    ai: { tag: 'Members', h: 'Every profile, with its context close by.', p: 'Find contact details, membership and activity in the same view.', prompt: 'Find member: Ana Martinez', n: 25,
+      tickets: [['Member', '#b7f34a', 'Ana Martinez · Monthly plan active'], ['Entry', '#d2ff73', 'Last check-in today · 8:42 am'], ['Membership', '#38bdf8', 'Next due date · Nov 14'], ['Class', '#fbbf24', 'Booking · Functional 6 pm']] },
+    okr: { tag: 'Activity', h: 'Understand traffic at your gym.', p: 'Review attendance, membership status and occupancy to decide where to focus.',
+      krs: [['Active memberships', 82, '#b7f34a'], ['Payments up to date', 68, '#38bdf8'], ['Weekly attendance', 91, '#34d399']] },
+    git: { tag: 'Access', h: 'A clear check-in at reception.', p: 'Review member status and record the entry result.', commit: 'QR checked · active member', task: 'Entry authorized · 8:42 am' },
+    time: { tag: 'Classes', h: 'Schedules and capacity in view.', p: 'Review bookings and plan capacity for each session.', days: 'MTWTFSS', card: 'Next class · Functional', slot: '6:00 pm' },
+    pf: { tag: 'Retention', h: 'Spot who may need follow-up.', p: 'Use recent activity to prioritize member outreach.', items: [['No visits · 7 days', 68, '#fbbf24'], ['Membership due soon', 82, '#38bdf8'], ['Follow-up pending', 46, '#b7f34a']] },
   },
   flow: {
-    eyebrow: 'The full flow', h2: 'From idea to release, without losing the thread.',
+    eyebrow: 'The daily workflow', h2: 'From a member profile to the end of a shift.',
     steps: [
-      ['layers', 'Plan', 'Organize work into epics, sprints and backlog. Set priorities and goals before you start.'],
-      ['square-kanban', 'Execute', 'Move tasks across the board, assign the team and track the time spent on each one.'],
-      ['git-branch', 'Connect', 'Code arrives on its own: GitHub commits link to each task by its key.'],
-      ['chart-column', 'Measure', 'Time reports, progress per project and OKRs to know what was really achieved.'],
+      ['users', 'Record', 'Keep member profiles and memberships up to date.'],
+      ['qr-code', 'Validate', 'Check member status and record each entry.'],
+      ['credit-card', 'Manage', 'Follow payments, classes, sales and cash movements.'],
+      ['chart-line', 'Support', 'Review activity and find who may need attention.'],
     ],
   },
   details: {
-    eyebrow: 'The details', h2: 'Crafted down to the last pixel.', lead: 'The small things that make using GymFlow every day feel light.',
+    eyebrow: 'One system for your gym', h2: 'Every area connected to daily operations.', lead: 'A shared panel helps reception, administration and trainers check the same status.',
     items: [
-      ['command', 'Command palette', 'Navigate and run actions from the keyboard without lifting your hands.'],
-      ['bookmark', 'Saved views', 'Save your filter combinations and get back to them in one click.'],
-      ['link', 'Dependencies', 'Mark which task blocks which and see the block right on the card.'],
-      ['upload', 'Files', 'Upload files by drag & drop, up to 50 MB, straight to storage.'],
-      ['users', 'Teams and roles', 'Invite people to your workspace and control what each role can do.'],
-      ['import', 'Import your work', 'Bring projects in from JSON with a preview before you confirm.'],
+      ['users', 'Member profiles', 'Details, memberships and history in one place.'],
+      ['credit-card', 'Plans and payments', 'Validity, due dates and payments linked to each member.'],
+      ['qr-code', 'Access control', 'Digital credentials, entry records and occupancy.'],
+      ['calendar-range', 'Classes and workout plans', 'Schedules, bookings and training plans.'],
+      ['shopping-bag', 'Sales and cash', 'Products, inventory movements and shift closeouts.'],
+      ['chart-column', 'Activity and retention', 'Attendance indicators to help plan follow-up.'],
     ],
   },
-  cta: { h2: 'Put your team in flow.', lead: 'Create your workspace for free and build your first board in minutes.', primary: 'Create a free account', secondary: 'I already have an account' },
+  cta: { h2: 'Keep your gym moving.', lead: 'Log in to GymFlow and manage your gym’s daily operations.', primary: 'Log in to GymFlow', secondary: 'Ask about plans' },
 };
 
 export const home: Record<Lang, HomeCopy> = { es, en };

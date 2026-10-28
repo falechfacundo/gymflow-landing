@@ -14,18 +14,18 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 const meta = {
   es: {
-    title: 'GymFlow — Gestión de proyectos con Kanban, sprints y OKRs',
-    description: 'Tableros Kanban, sprints, timeline, OKRs y time tracking en una sola herramienta. GymFlow organiza proyectos, equipos y progreso sin fricción. Empezá gratis.',
-    desc: 'Software de gestión de proyectos con tableros Kanban, sprints, timeline, OKRs, time tracking e integración con Git.',
+    title: 'GymFlow — Gestión para gimnasios',
+    description: 'Gestioná socios, membresías y accesos desde un mismo lugar. GymFlow conecta la operación diaria de tu gimnasio.',
+    desc: 'Sistema de gestión para gimnasios con socios, membresías, control de acceso, clases y caja.',
   },
   en: {
-    title: 'GymFlow — Project management with Kanban, sprints and OKRs',
-    description: 'Kanban boards, sprints, timeline, OKRs and time tracking in one tool. GymFlow organizes projects, teams and progress without friction. Start for free.',
-    desc: 'Project management software with Kanban boards, sprints, timeline, OKRs, time tracking and Git integration.',
+    title: 'GymFlow — Gym management software',
+    description: 'Manage members, memberships and access in one place. GymFlow connects the daily operations of your gym.',
+    desc: 'Gym management software for members, memberships, access control, classes and cash.',
   },
 }[lang];
 const ld = [
-  { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: SITE_NAME, applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: meta.desc, url: APP_URL, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
+  { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: SITE_NAME, applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: meta.desc, url: APP_URL },
   { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE_NAME, url: new URL(lang === 'es' ? '/' : '/en/', Astro.site).href, inLanguage: lang },
 ];
 ---

@@ -7,15 +7,15 @@ import type { Lang } from '../i18n/routes';
 interface Props { lang?: Lang }
 const { lang = 'es' } = Astro.props;
 const c = home[lang].board;
-const people: Record<string, string> = { SM: '#b7f34a', MR: '#0ea5e9', LV: '#ec4899', DP: '#f59e0b' };
+const people: Record<string, string> = { AM: '#b7f34a', TR: '#38bdf8', JL: '#d2ff73', MG: '#f59e0b', FR: '#34d399', LP: '#fbbf24', DP: '#d2ff73' };
 // texto de cada avatar: blanco solo donde llega a 4.5:1 (violeta); oscuro sobre celeste, rosa y ámbar
-const peopleText: Record<string, string> = { SM: '#fff', MR: '#08080a', LV: '#08080a', DP: '#08080a' };
-const colColors = ['#6b6a7d', '#38bdf8', '#fbbf24', '#34d399'];
+const peopleText: Record<string, string> = { AM: '#11170a', TR: '#08080a', JL: '#11170a', MG: '#08080a', FR: '#08080a', LP: '#08080a', DP: '#11170a' };
+const colColors = ['#34d399', '#38bdf8', '#fbbf24', '#f87171'];
 const columns = c.cols.map((name, ci) => ({
   name, color: colColors[ci],
   cards: Object.entries(c.cards).filter(([, k]) => k.col === ci).map(([id, k]) => ({ id, ...k, tagName: c.tags[k.tag], tagC: tagColor(k.tag) })),
 }));
-const nav = ['layout-dashboard', 'square-check-big', 'square-kanban', 'target', 'chart-column', 'users'];
+const nav = ['layout-dashboard', 'users', 'qr-code', 'credit-card', 'calendar-range', 'shopping-bag'];
 ---<div class="hero-stage" data-hero-stage>
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-tilt" data-hero-tilt>
@@ -41,7 +41,7 @@ const nav = ['layout-dashboard', 'square-check-big', 'square-kanban', 'target', 
           <main class="main">
             <div class="head">
               <div class="proj">
-                <span class="proj-ic"><Icon name="rocket" size={15} /></span>
+                <span class="proj-ic"><Icon name="layout-dashboard" size={15} /></span>
                 <div>
                   <div class="proj-name">{c.project}</div>
                   <div class="proj-sub">{c.sprintSub}</div>
@@ -82,7 +82,7 @@ const nav = ['layout-dashboard', 'square-check-big', 'square-kanban', 'target', 
                 <svg width="18" height="20" viewBox="0 0 18 20" fill="none"><path d="M1.2 1.2 16 8.6l-6.2 1.9L7.4 17 1.2 1.2Z" fill="var(--cc)" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>
                 <span>{c.cursor1}</span>
               </div>
-              <div class="cursor cursor-2" data-cursor2 style="--cc:#db2777" aria-hidden="true">
+              <div class="cursor cursor-2" data-cursor2 style="--cc:#38bdf8" aria-hidden="true">
                 <svg width="18" height="20" viewBox="0 0 18 20" fill="none"><path d="M1.2 1.2 16 8.6l-6.2 1.9L7.4 17 1.2 1.2Z" fill="var(--cc)" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>
                 <span>{c.cursor2}</span>
               </div>
@@ -133,7 +133,7 @@ const nav = ['layout-dashboard', 'square-check-big', 'square-kanban', 'target', 
   .app .main { flex: 1; min-width: 0; padding: 18px 20px 20px; background: radial-gradient(90% 50% at 50% 0%, rgba(183,243,74,.07), transparent 70%), #0e0e12; }
   .app .head { display: flex; align-items: center; gap: 18px; margin-bottom: 18px; }
   .app .proj { display: flex; align-items: center; gap: 10px; }
-  .app .proj-ic { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(135deg, #c5f551, #81b52b); color: #fff; box-shadow: 0 6px 16px -4px rgba(183,243,74,.7); }
+  .app .proj-ic { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(135deg, #c5f551, #81b52b); color: #11170a; box-shadow: 0 6px 16px -4px rgba(183,243,74,.7); }
   .app .proj-name { font-size: 15px; font-weight: 600; letter-spacing: -0.02em; }
   .app .proj-sub { color: var(--color-fg-3); font-size: 11px; }
   .app .tabs { display: flex; gap: 2px; padding: 3px; border-radius: 10px; background: #15151a; margin-left: 6px; }
@@ -167,7 +167,7 @@ const nav = ['layout-dashboard', 'square-check-big', 'square-kanban', 'target', 
   .app .av { margin-left: auto; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 99px; font-size: 8.5px; font-weight: 700; color: #fff; box-shadow: 0 0 0 2px #17171d; }
 
   .app .cursor { position: absolute; left: 0; top: 0; z-index: 40; pointer-events: none; opacity: 0; will-change: transform; filter: drop-shadow(0 6px 10px rgba(0,0,0,.5)); }
-  .app .cursor span { position: absolute; left: 14px; top: 16px; padding: 2px 8px; border-radius: 99px 99px 99px 3px; background: var(--cc); color: #fff; font-size: 10.5px; font-weight: 600; white-space: nowrap; }
+  .app .cursor span { position: absolute; left: 14px; top: 16px; padding: 2px 8px; border-radius: 99px 99px 99px 3px; background: var(--cc); color: #11170a; font-size: 10.5px; font-weight: 600; white-space: nowrap; }
 
   .app .drop-ring { position: absolute; z-index: 30; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 99px; border: 2px solid #34d399; pointer-events: none; animation: pulse-ring 0.9s ease-out forwards; }
 

@@ -20,11 +20,11 @@ const projects = c.pf.items;
     <div class="bento mt-16 grid gap-4 md:mt-20 md:grid-cols-6" data-bento-grid>
       <!-- IA -->
       <article class="bcard spot md:col-span-3" data-bento data-reveal>
-        <div class="bhead"><span class="bic"><Icon name="sparkles" size={18} /></span><span class="btag">{c.ai.tag}</span></div>
+        <div class="bhead"><span class="bic"><Icon name="users" size={18} /></span><span class="btag">{c.ai.tag}</span></div>
         <h3>{c.ai.h}</h3>
         <p>{c.ai.p}</p>
         <div class="bvis ai">
-          <div class="ai-prompt"><Icon name="sparkles" size={14} class="text-accent-2" /><span class="typing" style={`--n:${c.ai.prompt.length}`}>{c.ai.prompt}</span><i class="caret"></i></div>
+          <div class="ai-prompt"><Icon name="search" size={14} class="text-accent-2" /><span class="typing" style={`--n:${c.ai.prompt.length}`}>{c.ai.prompt}</span><i class="caret"></i></div>
           <ul class="ai-list">
             {tickets.map(([t, c, title], i) => (
               <li style={`--i:${i}`}>
@@ -38,7 +38,7 @@ const projects = c.pf.items;
 
       <!-- OKR -->
       <article class="bcard spot md:col-span-3" data-bento data-reveal>
-        <div class="bhead"><span class="bic"><Icon name="target" size={18} /></span><span class="btag">{c.okr.tag}</span></div>
+        <div class="bhead"><span class="bic"><Icon name="chart-column" size={18} /></span><span class="btag">{c.okr.tag}</span></div>
         <h3>{c.okr.h}</h3>
         <p>{c.okr.p}</p>
         <div class="bvis okr">
@@ -63,26 +63,26 @@ const projects = c.pf.items;
 
       <!-- Git -->
       <article class="bcard spot md:col-span-2" data-bento data-reveal>
-        <div class="bhead"><span class="bic"><Icon name="git-branch" size={18} /></span><span class="btag">{c.git.tag}</span></div>
+        <div class="bhead"><span class="bic"><Icon name="qr-code" size={18} /></span><span class="btag">{c.git.tag}</span></div>
         <h3>{c.git.h}</h3>
         <p>{c.git.p}</p>
         <div class="bvis git">
           <div class="commit">
-            <Icon name="git-commit-horizontal" size={16} class="text-fg-3" />
-            <code>{c.git.commit} <em>#a8f3k2x</em></code>
+            <Icon name="shield-check" size={16} class="text-fg-3" />
+            <code>{c.git.commit} <em>GymFlow</em></code>
           </div>
           <svg class="gline" viewBox="0 0 20 40" preserveAspectRatio="none"><path d="M10 0 V40" stroke="url(#gg)" stroke-width="1.5" stroke-dasharray="3 4" /><defs><linearGradient id="gg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#b7f34a" stop-opacity="0" /><stop offset="1" stop-color="#d2ff73" /></linearGradient></defs></svg>
-          <div class="linked"><span class="mtag" style="--c:#34d399"><i></i>Frontend</span><span>{c.git.task}</span><Icon name="check-check" size={15} class="ml-auto text-ok" /></div>
+          <div class="linked"><span class="mtag" style="--c:#34d399"><i></i>Ingreso</span><span>{c.git.task}</span><Icon name="check-check" size={15} class="ml-auto text-ok" /></div>
         </div>
       </article>
 
       <!-- Time -->
       <article class="bcard spot md:col-span-2" data-bento data-reveal>
-        <div class="bhead"><span class="bic"><Icon name="timer" size={18} /></span><span class="btag">{c.time.tag}</span></div>
+        <div class="bhead"><span class="bic"><Icon name="calendar-range" size={18} /></span><span class="btag">{c.time.tag}</span></div>
         <h3>{c.time.h}</h3>
         <p>{c.time.p}</p>
         <div class="bvis time">
-          <div class="clock"><span class="live"></span><b data-timer="8077">02:14:37</b></div>
+          <div class="clock"><span class="live"></span><div><small>{c.time.card}</small><b>{c.time.slot}</b></div></div>
           <div class="wk">
             {[38, 64, 52, 86, 70, 24, 12].map((h, i) => (
               <div><i style={`--h:${h}%;--i:${i}`}></i><span>{c.time.days[i]}</span></div>
@@ -93,7 +93,7 @@ const projects = c.pf.items;
 
       <!-- Portfolios -->
       <article class="bcard spot md:col-span-2" data-bento data-reveal>
-        <div class="bhead"><span class="bic"><Icon name="briefcase" size={18} /></span><span class="btag">{c.pf.tag}</span></div>
+        <div class="bhead"><span class="bic"><Icon name="chart-line" size={18} /></span><span class="btag">{c.pf.tag}</span></div>
         <h3>{c.pf.h}</h3>
         <p>{c.pf.p}</p>
         <div class="bvis pf">
