@@ -8,22 +8,22 @@ rutinas, caja y reportes de retención. Este repo es **solo la landing de market
 
 - **Público**: dueños y administradores de gimnasios.
 - **Promesa en evaluación**: tener socios, cuotas y accesos bajo control. La hipótesis prioriza el momento operativo de validar quién puede entrar; falta validarla con gimnasios.
-- **Estado de la landing**: identidad visual de GymFlow aplicada; páginas y copy heredados se adaptarán en la siguiente etapa.
+- **Estado de la landing**: identidad y contenido adaptados a GymFlow. La demo visual usa datos de ejemplo; el estado de cada módulo se confirma según el despliegue del producto.
 - **Idiomas**: español (default, sin prefijo: `/`) e inglés (`/en/`).
 
 ## Páginas
 
-Registro de rutas en `src/i18n/routes.ts` (clave → ruta por idioma). 41 páginas en el build:
+Registro de rutas en `src/i18n/routes.ts` (clave → ruta por idioma):
 
 | Tipo | Rutas ES (EN equivalente bajo `/en/`) | Vista |
 |---|---|---|
 | Home | `/` | `src/views/Home.astro`: Hero, Marquee, Showcase, Bento, Flow, Details, CTA |
-| Funciones (7) | `/funciones/{tablero-kanban,sprints,timeline,okrs,time-tracking,integracion-git,tickets-con-ia}/` | `FeaturePage.astro` |
-| Precios | `/precios/` | `PricingPage.astro` |
-| Comparativas (4) | `/comparar/{jira,clickup,linear,trello}/` | `ComparePage.astro` |
+| Módulos (7) | `/funciones/{socios,membresias-y-cobros,control-de-acceso,clases,rutinas,caja-y-ventas,retencion-y-reportes}/` | `FeaturePage.astro` |
+| Planes | `/planes/` | `PricingPage.astro` (sin precios publicados) |
+| Recursos (4) | `/recursos/{ordenar-la-operacion,controlar-cuotas-y-cobros,control-de-acceso-y-aforo,mejorar-retencion-de-socios}/` | `ComparePage.astro` |
 | Legal (2) | `/legal/{terminos,privacidad}/` | `LegalPage.astro` |
-| Contacto | `/contacto/` | `ContactPage.astro` (muestra un `mailto:`, sin formulario) |
-| Changelog | `/novedades/` | `ChangelogPage.astro` |
+| Contacto | `/contacto/` | `ContactPage.astro` (email opcional por entorno; sin formulario) |
+| Desarrollo | `/desarrollo/` | `ChangelogPage.astro` |
 | Blog | `/blog/` y `/blog/<slug>/` | `BlogIndex.astro`, `BlogPost.astro` |
 | 404 | `/404.html` | `noindex` |
 
@@ -34,7 +34,7 @@ Las páginas del registro se generan desde `src/pages/[...slug].astro`; home y b
 | Integración | Estado |
 |---|---|
 | Analytics | No definido |
-| Formularios | No definido (contacto por `mailto:`) |
+| Formularios | No definido; contacto por email solo si se configura `PUBLIC_CONTACT_EMAIL` |
 | CMS | No definido. El blog usa Content Collections de Astro: Markdown en `src/content/blog/{es,en}/`, unidos por `translationKey` |
 | SEO | `@astrojs/sitemap` (con alternates i18n), `robots.txt` generado (`src/pages/robots.txt.ts`), JSON-LD (`JsonLd.astro`) |
 | Hosting | Vercel (proyecto linkeado en `.vercel/`); cualquier host estático sirve |
@@ -46,8 +46,8 @@ Todas opcionales: si faltan, se usa el default de `src/config.ts` / `astro.confi
 | Variable | Uso |
 |---|---|
 | `PUBLIC_SITE_URL` | Dominio de la landing (canonical, sitemap, OG) |
-| `PUBLIC_APP_URL` | URL del producto; los CTA van a `/register` y `/login` |
-| `PUBLIC_CONTACT_EMAIL` | Email mostrado en `/contacto` |
+| `PUBLIC_APP_URL` | URL base del producto; todos los CTA de acceso van a `/login` |
+| `PUBLIC_CONTACT_EMAIL` | Email comercial opcional. Si no está configurado, la página no inventa un canal de contacto |
 
 `.env.local` lo genera el CLI de Vercel (`VERCEL_OIDC_TOKEN`); no lo usa el build.
 
@@ -56,7 +56,7 @@ Todas opcionales: si faltan, se usa el default de `src/config.ts` / `astro.confi
 | Decisión | Por qué |
 |---|---|
 | Astro estático (`build.format: 'directory'`, `trailingSlash: 'always'`) | Landing de contenido: HTML puro, sin servidor, URLs canónicas consistentes |
-| i18n con registro propio de rutas (`routes.ts`) en vez de duplicar páginas | Slugs traducidos por idioma (`/precios/` ↔ `/en/pricing/`) y hreflang automático |
+| i18n con registro propio de rutas (`routes.ts`) en vez de duplicar páginas | Slugs traducidos por idioma (`/planes/` ↔ `/en/pricing/`) y hreflang automático |
 | Tailwind v4 configurado en CSS (`@theme`) | Tokens del design system junto a los estilos globales; sin archivo de config |
 | Un único `motion.ts` global (GSAP + Lenis) | Sitio multipágina sin islands interactivas; una sola inicialización por carga |
 | Lenis solo para rueda, touch nativo | Evita conflictos con el scroll del sistema en móvil |
@@ -67,6 +67,6 @@ Todas opcionales: si faltan, se usa el default de `src/config.ts` / `astro.confi
 
 ## Pendientes conocidos
 
-- Sin dominio propio (default `https://flowboard-landing.vercel.app`).
-- Textos legales: documento base, falta revisión legal.
+- URL final de la app y dominio propio de la landing pendientes de definir en despliegue.
+- Textos legales en borrador, `noindex`, pendientes de completar datos de la entidad, proveedores y revisión profesional.
 - Deuda de UI registrada en los tests (`test.fail`): ver `docs/testing.md` → "Deuda conocida".

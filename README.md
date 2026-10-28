@@ -8,7 +8,7 @@ Es un repo independiente del producto, que vive en `../gymflow-webapp`.
 | | |
 | --- | --- |
 | Deploy | ❌ Dominio final por definir. Valor temporal de `PUBLIC_SITE_URL`: `https://gymflow-landing.vercel.app` |
-| Producto | La landing todavía conserva páginas y copy del proyecto anterior; se adaptarán en la siguiente etapa |
+| Producto | Marca y copy adaptados a gimnasios; el alcance de algunos módulos depende del estado de la webapp |
 
 ## Comandos
 
@@ -32,14 +32,14 @@ Variables (o defaults en `src/config.ts`):
 | Variable | Uso |
 |---|---|
 | `PUBLIC_SITE_URL` | Dominio de esta landing (canonical, sitemap, OG). Default `https://gymflow-landing.vercel.app` |
-| `PUBLIC_APP_URL` | URL del producto; los CTA apuntan a `/register` y `/login` |
-| `PUBLIC_CONTACT_EMAIL` | Email mostrado en /contacto |
+| `PUBLIC_APP_URL` | URL base del producto; los CTA apuntan a `/login` (default local: `http://localhost:3000`) |
+| `PUBLIC_CONTACT_EMAIL` | Email comercial opcional para `/contacto`; si no se configura, no se muestra un correo inventado |
 
 ## Estructura
 
 ```
 src/
-  i18n/         routes.ts (rutas ES/EN), home.ts, features.ts, pages.ts (precios, comparativas, legal, changelog), ui.ts
+  i18n/         routes.ts (rutas ES/EN), home.ts, features.ts, resources.ts, legal.ts, pages.ts (planes, contacto y desarrollo), ui.ts
   views/        Home, FeaturePage, PricingPage, ComparePage, LegalPage, ContactPage, ChangelogPage, BlogIndex, BlogPost
   pages/        index, en/index, [...slug] (páginas del registro de rutas), blog/, en/blog/, 404, robots.txt
   content/blog/ Artículos en Markdown (es/ y en/, unidos por translationKey)
@@ -52,8 +52,8 @@ scripts/sync-icons.mjs  Copia a src/icons solo los íconos lucide usados (corre 
 
 - Español en `/` e inglés en `/en/`, con `hreflang` + `x-default`, canonical y `og:locale`.
 - `sitemap-index.xml` (con alternates i18n) y `robots.txt` generados en build.
-- JSON-LD: Organization, WebSite, SoftwareApplication, Product (precios), FAQPage, BreadcrumbList, BlogPosting.
-- Una página por función, comparativas, precios, blog y changelog; 404 con `noindex`.
+- JSON-LD: Organization, WebSite, SoftwareApplication, FAQPage, BreadcrumbList, BlogPosting.
+- Páginas por módulo, recursos para gimnasios, planes sin precios publicados, blog, hoja de ruta y páginas legales marcadas como borrador/noindex; 404 con `noindex`.
 
 ## Agregar contenido
 
