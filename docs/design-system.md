@@ -39,15 +39,15 @@ Media queries propias en componentes:
 | `--color-fg` | `#f4f3f8` | Texto principal |
 | `--color-fg-2` | `#a3a2b3` | Texto secundario, `.lead` |
 | `--color-fg-3` | `#858496` | Texto terciario, metadatos. Valor mínimo que pasa 4.5:1 (AA) sobre todos los fondos (`base` 5.37:1, `raise` 4.63:1): no oscurecerlo |
-| `--color-accent` | `#6e5cf5` | Acento principal (CTA, foco) |
-| `--color-accent-2` | `#9b8bff` | Eyebrows, íconos, gradientes |
-| `--color-accent-3` | `#c4baff` | Íconos sobre fondo de acento, links de prosa |
+| `--color-accent` | `#b7f34a` | Acento principal (CTA, foco) |
+| `--color-accent-2` | `#d2ff73` | Eyebrows, íconos, gradientes |
+| `--color-accent-3` | `#e8ffb0` | Íconos sobre fondo de acento, links de prosa |
 | `--color-ok` | `#34d399` | Estado OK / done |
 | `--color-warn` | `#fbbf24` | Prioridad / review |
 | `--color-info` | `#38bdf8` | En progreso |
 | `--color-danger` | `#f87171` | Marcador "hoy", prioridad alta |
 
-Gradientes de texto: `.grad-text` (blanco → 55% alfa, vertical) y `.grad-accent` (`#c4baff → #8b7bff → #6e5cf5`).
+Gradientes de texto: `.grad-text` (blanco → 55% alfa, vertical) y `.grad-accent` (`#e8ffb0 → #d2ff73 → #b7f34a`).
 
 ## Tipografía
 
@@ -94,10 +94,10 @@ No hay escala de spacing propia: se usa la de Tailwind.
 
 ## Sombras y superficies
 
-- `.btn-primary`: gradiente `#8371ff → #6e5cf5 → #5b48e6` + inset highlight + glow `0 10px 30px -8px rgba(110,92,245,.7)`; brillo que barre en hover.
+- `.btn-primary`: gradiente `#d2ff73 → #b7f34a → #81b52b` + inset highlight + glow verde; brillo que barre en hover.
 - `.btn-ghost`: `rgba(255,255,255,.04)` + borde inset `line-strong` + `backdrop-filter: blur(10px)`.
 - `.glass`: gradiente blanco 5.5% → 2% + borde inset + `blur(18px)`.
-- `.cta`: radial violeta oscuro + borde inset violeta + `0 60px 140px -40px rgba(110,92,245,.45)`.
+- `.cta`: radial verde oscuro + borde inset verde + `0 60px 140px -40px rgba(183,243,74,.45)`.
 - Texturas: `.hairline-grid` (grilla de 64px), `.noise` (ruido SVG en overlay), blobs con `blur(110-130px)`.
 - Easings: `--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1)`, `--ease-soft: cubic-bezier(0.22, 1, 0.36, 1)`.
 
@@ -105,7 +105,7 @@ No hay escala de spacing propia: se usa la de Tailwind.
 
 Premium, oscuro y minimalista: el producto se muestra "vivo" en mocks animados (board del hero, Showcase, Bento).
 
-1. **Oscuro con un solo acento**: neutros fríos y violeta `#6e5cf5`; el color de estado (ok/warn/info/danger) solo dentro de mocks del producto.
+1. **Oscuro con un solo acento**: neutros fríos y verde lima `#b7f34a`; el color de estado (ok/warn/info/danger) solo dentro de mocks del producto.
 2. **Profundidad sutil**: bordes de 1px con alfa, glows violetas y blur, nunca sombras duras ni bordes opacos.
 3. **Tipografía protagonista**: titulares grandes, tracking negativo, gradiente de texto; texto secundario en `fg-2`.
 4. **Movimiento con intención**: entradas `expo.out`, reveals al scrollear, demos que se mueven solas; siempre con alternativa para reduced motion.

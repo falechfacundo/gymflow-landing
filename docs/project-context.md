@@ -2,13 +2,13 @@
 
 ## Producto
 
-**FlowBoard** es un software de gestión de proyectos: tableros Kanban, sprints, timeline, OKRs, time tracking,
-integración con Git y tickets generados con IA. Este repo es **solo la landing de marketing**. El producto vive en otro
-repo (`kanban-nextjs`) y se deploya en `PUBLIC_APP_URL`.
+**GymFlow** es un SaaS para administrar gimnasios: socios, membresías y cobros, control de acceso y aforo, clases,
+rutinas, caja y reportes de retención. Este repo es **solo la landing de marketing**. El producto vive en
+`../gymflow-webapp` y se vincula mediante `PUBLIC_APP_URL`.
 
-- **Público**: equipos que organizan proyectos y trabajo ("une proyectos, equipos y progreso en un solo lugar",
-  `src/i18n/home.ts`). No hay más segmentación definida en el código.
-- **Modelo**: plan Gratis ($0) y plan Equipos "Próximamente". El producto todavía **no cobra** (README).
+- **Público**: dueños y administradores de gimnasios.
+- **Promesa en evaluación**: tener socios, cuotas y accesos bajo control. La hipótesis prioriza el momento operativo de validar quién puede entrar; falta validarla con gimnasios.
+- **Estado de la landing**: identidad visual de GymFlow aplicada; páginas y copy heredados se adaptarán en la siguiente etapa.
 - **Idiomas**: español (default, sin prefijo: `/`) e inglés (`/en/`).
 
 ## Páginas

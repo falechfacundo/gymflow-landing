@@ -1,14 +1,14 @@
-# FlowBoard · Landing
+# GymFlow · Landing
 
-Landing page de FlowBoard, construida con **Astro 7 + Tailwind v4 + GSAP (ScrollTrigger, Flip) + Lenis**.
-Es un repo independiente del producto (`kanban-nextjs`).
+Landing page de GymFlow, construida con **Astro 7 + Tailwind v4 + GSAP (ScrollTrigger, Flip) + Lenis**.
+Es un repo independiente del producto, que vive en `../gymflow-webapp`.
 
 ## Estado
 
 | | |
 | --- | --- |
-| Deploy | ❌ Sin dominio propio. Default de `PUBLIC_SITE_URL`: `https://flowboard-landing.vercel.app` |
-| Producto | Sin billing: la página de precios describe planes que el producto todavía no cobra |
+| Deploy | ❌ Dominio final por definir. Valor temporal de `PUBLIC_SITE_URL`: `https://gymflow-landing.vercel.app` |
+| Producto | La landing todavía conserva páginas y copy del proyecto anterior; se adaptarán en la siguiente etapa |
 
 ## Comandos
 
@@ -31,7 +31,7 @@ Variables (o defaults en `src/config.ts`):
 
 | Variable | Uso |
 |---|---|
-| `PUBLIC_SITE_URL` | Dominio de esta landing (canonical, sitemap, OG). Default `https://flowboard-landing.vercel.app` |
+| `PUBLIC_SITE_URL` | Dominio de esta landing (canonical, sitemap, OG). Default `https://gymflow-landing.vercel.app` |
 | `PUBLIC_APP_URL` | URL del producto; los CTA apuntan a `/register` y `/login` |
 | `PUBLIC_CONTACT_EMAIL` | Email mostrado en /contacto |
 

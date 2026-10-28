@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
-const site = process.env.PUBLIC_SITE_URL ?? 'https://flowboard-landing.vercel.app';
+const site = process.env.PUBLIC_SITE_URL ?? 'https://gymflow-landing.vercel.app';
 
 export default defineConfig({
   site,
